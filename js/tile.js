@@ -4,6 +4,7 @@
 	}
 	
 	var Tile = Minesweeper.Tile = function () {
-		this.mark = "_";
+		this.mark = "|_|";
 	}
+	
 })();
