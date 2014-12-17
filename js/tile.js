@@ -5,6 +5,7 @@
 	
 	var Tile = Minesweeper.Tile = function () {
 		this.mark = "|_|";
+		this.bombed = false;
 	}
 	
 })();

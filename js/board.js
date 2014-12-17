@@ -8,22 +8,25 @@
 	
 	var Board = Minesweeper.Board = function () {
 		this.gameBoard = this.generateBoard();
-		// this.seedBombs();
+		this.seedBombs();
 		this.render();
 	}
 	
-	// Board.prototype.seedBombs = function () {
-	// 	var seededCoords = [];
-	//
-	// 	while (seededCoords.length < BOMB_COUNT) {
-	// 		var newCoord = [Math.floor(Math.random() * BOARD_SIZE), Math.floor(Math.random() * BOARD_SIZE)];
-	// 		if (seededCoords.indexOf(newCoord) === -1) {
-	// 			seededCoords.push(newCoord);
-	// 		}
-	// 	}
-	//
-	// 	seededC
-	// }
+	Board.prototype.seedBombs = function () {
+		var seededCoords = [];
+
+		while (seededCoords.length < BOMB_COUNT) {
+			var newCoord = [Math.floor(Math.random() * BOARD_SIZE), Math.floor(Math.random() * BOARD_SIZE)];
+			if (seededCoords.indexOf(newCoord) === -1) {
+				seededCoords.push(newCoord);
+			}
+		}
+		
+		seededCoords.forEach( function (coord) {
+			this.gameBoard[coord[0]][coord[1]].bombed = true;
+			this.gameBoard[coord[0]][coord[1]].mark = "b";
+		}.bind(this))
+	}
 	
 	Board.prototype.render = function () {
 		var boardString = "";
