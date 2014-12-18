@@ -6,11 +6,17 @@
 	float: left;
 	height: 18px;
 	width: 18px;
-	background: grey;
+	background: white;
+	text-align: center;
 	
 	border: solid black 1px;
 }
 
 .tile.bombed {
 	background: red;
+}
+
+.tile.hidden {
+	color: transparent;
+	background-color: gray;
 }

@@ -6,6 +6,7 @@
 	var Tile = Minesweeper.Tile = function (board, coords) {
 		this.mark = "|_|";
 		this.bombed = false;
+		this.revealed = false;
 		this.board = board;
 		this.coords = coords;
 	}

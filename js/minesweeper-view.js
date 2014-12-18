@@ -17,10 +17,14 @@
 		for (var i = 0; i < this.boardSize; i++) {
 			$row = $("<div class='row'></div>");
 			for (var j = 0; j < this.boardSize; j++) {
-				$tile = $("<div class='tile'></div>");
+				$tile = $("<div class='tile hidden'></div>");
 				
 				if (this.board.gameBoard[i][j].bombed) {
 					$tile.addClass("bombed");
+				}
+				
+				if (this.board.gameBoard[i][j].revealed) {
+					$tile.removeClass("hidden");
 				}
 				
 				$tile.html(this.board.gameBoard[i][j].neighborBombCount());
