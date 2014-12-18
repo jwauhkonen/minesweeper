@@ -23,11 +23,13 @@
 					$tile.addClass("bombed");
 				}
 				
+				$tile.html(this.board.gameBoard[i][j].neighborBombCount());
+				
 				$row.append($tile);
 			}
+			
 			this.$el.append($row);
 		}
-
 	}
 	
 })();
