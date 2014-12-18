@@ -21,15 +21,16 @@
 				var $tile = $("<div class='tile hidden'></div>");
 				$tile.attr("coords", [i, j]);
 				
+				$tile.html(this.board.gameBoard[i][j].neighborBombCount());
+				
 				if (this.board.gameBoard[i][j].bombed) {
+					$tile.empty();
 					$tile.addClass("bombed");
 				}
 				
 				if (this.board.gameBoard[i][j].revealed) {
 					$tile.removeClass("hidden");
 				}
-				
-				$tile.html(this.board.gameBoard[i][j].neighborBombCount());
 				
 				$row.append($tile);
 			}

@@ -8,7 +8,6 @@
 		this.bombCount = bombCount;
 		this.gameBoard = this.generateBoard();
 		this.seededCoords = this.seedBombs();
-		// this.render();
 	}
 	
 	Board.prototype.seedBombs = function () {
@@ -29,18 +28,6 @@
 		return seededCoords;
 	}
 	
-	// Board.prototype.render = function () {
-// 		var boardString = "";
-//
-// 		for (var i = 0; i < this.boardSize; i++) {
-// 			for (var j = 0; j < this.boardSize; j++) {
-// 				boardString += this.gameBoard[i][j].mark
-// 			}
-// 			boardString += '\n';
-// 		}
-//
-// 		console.log(boardString);
-// 	}
 	
 	Board.prototype.generateBoard = function () {
 		var gameBoard = new Array(this.boardSize);
@@ -56,6 +43,16 @@
 		}
 		
 		return gameBoard;
+	}
+	
+	Board.prototype.gameOver = function () {
+		console.log("You Lose!!!!!!");
+		
+		for (var i = 0; i < this.boardSize; i++) {
+			for (var j = 0; j < this.boardSize; j++) {
+				this.gameBoard[i][j].revealed = true;
+			}
+		}
 	}
 	
 })();

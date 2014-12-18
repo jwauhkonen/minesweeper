@@ -50,12 +50,15 @@
 	Tile.prototype.reveal = function () {
 		this.revealed = true;
 		
+		if (this.bombed) {
+			this.board.gameOver();
+		}
+		
 		if (this.neighborBombCount() === 0) {
 			this.neighbors().forEach( function (neighbor) {
 				if (neighbor.revealed === false) {
 					neighbor.reveal();
 				}
-				console.log(neighbor.coords);
 			})
 		}
 		
