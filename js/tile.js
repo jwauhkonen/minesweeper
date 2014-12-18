@@ -47,6 +47,8 @@
 		return count;
 	}
 	
-	
+	Tile.prototype.reveal = function () {
+		console.log(this.bombed);
+	}
 	
 })();
