@@ -3,20 +3,19 @@
 		window.Minesweeper = {};
 	}
 	
-	var BOARD_SIZE = 20;
-	var BOMB_COUNT = 10;
-	
-	var Board = Minesweeper.Board = function () {
+	var Board = Minesweeper.Board = function (boardSize, bombCount) {
+		this.boardSize = boardSize;
+		this.bombCount = bombCount;
 		this.gameBoard = this.generateBoard();
-		this.seedBombs();
+		this.seededCoords = this.seedBombs();
 		this.render();
 	}
 	
 	Board.prototype.seedBombs = function () {
 		var seededCoords = [];
 
-		while (seededCoords.length < BOMB_COUNT) {
-			var newCoord = [Math.floor(Math.random() * BOARD_SIZE), Math.floor(Math.random() * BOARD_SIZE)];
+		while (seededCoords.length < this.bombCount) {
+			var newCoord = [Math.floor(Math.random() * this.boardSize), Math.floor(Math.random() * this.boardSize)];
 			if (seededCoords.indexOf(newCoord) === -1) {
 				seededCoords.push(newCoord);
 			}
@@ -24,15 +23,17 @@
 		
 		seededCoords.forEach( function (coord) {
 			this.gameBoard[coord[0]][coord[1]].bombed = true;
-			this.gameBoard[coord[0]][coord[1]].mark = "b";
+			this.gameBoard[coord[0]][coord[1]].mark = "|b|";
 		}.bind(this))
+		
+		return seededCoords;
 	}
 	
 	Board.prototype.render = function () {
 		var boardString = "";
 		
-		for (var i = 0; i < BOARD_SIZE; i++) {
-			for (var j = 0; j < BOARD_SIZE; j++) {
+		for (var i = 0; i < this.boardSize; i++) {
+			for (var j = 0; j < this.boardSize; j++) {
 				boardString += this.gameBoard[i][j].mark
 			}
 			boardString += '\n';
@@ -42,14 +43,14 @@
 	}
 	
 	Board.prototype.generateBoard = function () {
-		var gameBoard = new Array(BOARD_SIZE);
+		var gameBoard = new Array(this.boardSize);
 		
-		for (var i = 0; i < BOARD_SIZE; i++) {
-			gameBoard[i] = new Array(BOARD_SIZE);
+		for (var i = 0; i < this.boardSize; i++) {
+			gameBoard[i] = new Array(this.boardSize);
 		}
 		
-		for (var j = 0; j < BOARD_SIZE; j++) {
-			for (var k = 0; k < BOARD_SIZE; k++) {
+		for (var j = 0; j < this.boardSize; j++) {
+			for (var k = 0; k < this.boardSize; k++) {
 				gameBoard[j][k] = new Minesweeper.Tile();
 			}
 		}

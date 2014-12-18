@@ -1,0 +1,16 @@
+.row {
+	clear: both;
+}
+
+.tile {
+	float: left;
+	height: 18px;
+	width: 18px;
+	background: grey;
+	
+	border: solid black 1px;
+}
+
+.tile.bombed {
+	background: red;
+}
