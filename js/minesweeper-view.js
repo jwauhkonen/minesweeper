@@ -6,7 +6,7 @@
 	var View = Minesweeper.View = function ($el) {
 		this.$el = $el;
 		this.boardSize = 20;
-		this.bombCount = 20;
+		this.bombCount = 10;
 		this.board = new Minesweeper.Board(this.boardSize, this.bombCount);
 		this.render();
 		this.$el.on("click", this.handleClick.bind(this));

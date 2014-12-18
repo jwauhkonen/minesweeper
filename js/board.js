@@ -45,8 +45,32 @@
 		return gameBoard;
 	}
 	
-	Board.prototype.gameOver = function () {
+	Board.prototype.checkForWin = function () {
+		for (var i = 0; i < this.boardSize; i++) {
+			for (var j = 0; j < this.boardSize; j++) {
+				var tile = this.gameBoard[i][j];
+				
+				if ((tile.revealed === false) && (tile.bombed === false)) {
+					return false;
+				}
+			}
+		}
+		
+		return true;
+	}
+	
+	Board.prototype.gameLoss = function () {
 		console.log("You Lose!!!!!!");
+		
+		for (var i = 0; i < this.boardSize; i++) {
+			for (var j = 0; j < this.boardSize; j++) {
+				this.gameBoard[i][j].revealed = true;
+			}
+		}
+	}
+	
+	Board.prototype.gameWin = function () {
+		console.log("You Win!!!!!!");
 		
 		for (var i = 0; i < this.boardSize; i++) {
 			for (var j = 0; j < this.boardSize; j++) {

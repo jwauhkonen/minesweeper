@@ -51,7 +51,11 @@
 		this.revealed = true;
 		
 		if (this.bombed) {
-			this.board.gameOver();
+			this.board.gameLoss();
+		} else {
+			if (this.board.checkForWin()) {
+				this.board.gameWin();
+			}
 		}
 		
 		if (this.neighborBombCount() === 0) {
