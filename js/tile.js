@@ -48,7 +48,17 @@
 	}
 	
 	Tile.prototype.reveal = function () {
-		console.log(this.bombed);
+		this.revealed = true;
+		
+		if (this.neighborBombCount() === 0) {
+			this.neighbors().forEach( function (neighbor) {
+				if (neighbor.revealed === false) {
+					neighbor.reveal();
+				}
+				console.log(neighbor.coords);
+			})
+		}
+		
 	}
 	
 })();
