@@ -5,15 +5,19 @@
 	
 	var View = Minesweeper.View = function ($el) {
 		this.$el = $el;
+		this.$gameBoard = $("#game-board");
+		this.$sidePanel = $("#side-panel");
 		this.boardSize = 20;
 		this.bombCount = 10;
 		this.board = new Minesweeper.Board(this.boardSize, this.bombCount);
-		this.render();
-		this.$el.on("click", this.handleClick.bind(this));
+		
+		this.renderBoard();
+		this.renderSidePanel();
+		this.$gameBoard.on("click", this.handleClick.bind(this));
 	}
 	
-	View.prototype.render = function () {
-		this.$el.empty()
+	View.prototype.renderBoard = function () {
+		this.$gameBoard.empty()
 		
 		for (var i = 0; i < this.boardSize; i++) {
 			$row = $("<div class='row'></div>");
@@ -35,14 +39,19 @@
 				$row.append($tile);
 			}
 			
-			this.$el.append($row);
+			this.$gameBoard.append($row);
 		}
+	}
+	
+	View.prototype.renderSidePanel = function () {
+		
 	}
 	
 	View.prototype.handleClick = function (event) {
 		var tileCoords = $(event.target).attr("coords").split(",");
+		
 		this.board.gameBoard[tileCoords[0]][tileCoords[1]].reveal();
-		this.render();
+		this.renderBoard();
 	}
 	
 })();

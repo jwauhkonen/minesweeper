@@ -6,14 +6,22 @@
         <link rel="stylesheet" type="text/css" href="css/minesweeper.css">
     </head>
     <body>
-        <div id="game-board"></div>
+		<div id="game-area">
+	        <div id="game-board"></div>
+			<div id="side-panel">
+				<h3 id="panel-header">Bombs Left</h3>
+				<p id="bomb-count">20</p>
+				
+				<button id="flag-button">Toggle</button>
+			</div>
+		</div>
         
         <script src="js/jquery-2.1.1.js"></script>
         <script src="js/board.js"></script>
 		<script src="js/tile.js"></script>
 		<script src="js/minesweeper-view.js"></script>
         <script>
-            var $el = $("#game-board");
+            var $el = $("#game-area");
             var View = new Minesweeper.View($el);
         </script>
     </body>

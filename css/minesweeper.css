@@ -20,3 +20,16 @@
 	color: transparent;
 	background-color: gray;
 }
+
+#game-board {
+	float: left;
+}
+
+#side-panel {
+	position: absolute;
+	top: 100px;
+	right: 200px;
+	height: 200px;
+	width: 300px;
+	border: dashed blue 1px;
+}
