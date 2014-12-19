@@ -7,8 +7,8 @@
 		this.$el = $el;
 		this.$gameBoard = $("#game-board");
 		this.$sidePanel = $("#side-panel");
-		this.boardSize = 20;
-		this.bombCount = 10;
+		this.boardSize = 15;
+		this.bombCount = 20;
 		this.bombsLeft = this.bombCount;
 		this.board = new Minesweeper.Board(this.boardSize, this.bombCount);
 		
