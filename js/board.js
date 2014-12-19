@@ -67,6 +67,8 @@
 				this.gameBoard[i][j].revealed = true;
 			}
 		}
+		
+		$("#side-panel").html("<h1>You Lose!</h1>");
 	}
 	
 	Board.prototype.gameWin = function () {
@@ -77,6 +79,8 @@
 				this.gameBoard[i][j].revealed = true;
 			}
 		}
+		
+		$("#side-panel").html("<h1>You Win!</h1>");
 	}
 	
 })();
