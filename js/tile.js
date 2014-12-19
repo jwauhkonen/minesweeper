@@ -70,14 +70,4 @@
 		}
 	}
 	
-	// Tile.prototype.flag = function () {
-// 		if (!this.revealed) {
-// 			if (this.flagged) {
-// 				this.flagged = false;
-// 			} else {
-// 				this.flagged = true;
-// 			}
-// 		}
-// 	}
-	
 })();
