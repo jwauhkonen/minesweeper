@@ -15,7 +15,15 @@
 
 		while (seededCoords.length < this.bombCount) {
 			var newCoord = [Math.floor(Math.random() * this.boardSize), Math.floor(Math.random() * this.boardSize)];
-			if (seededCoords.indexOf(newCoord) === -1) {
+			
+			var repeat = false;
+			seededCoords.forEach( function (coord) {
+				if (coord.toString() === newCoord.toString()) {
+					repeat = true;
+				}
+			})
+			
+			if (!repeat) {
 				seededCoords.push(newCoord);
 			}
 		}
