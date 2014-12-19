@@ -14,6 +14,7 @@
 		this.renderBoard();
 		this.renderSidePanel();
 		this.$gameBoard.on("click", this.handleClick.bind(this));
+		this.$gameBoard.on("contextmenu", this.handleRightClick.bind(this));
 	}
 	
 	View.prototype.renderBoard = function () {
@@ -36,6 +37,10 @@
 					$tile.removeClass("hidden");
 				}
 				
+				if (this.board.gameBoard[i][j].flagged) {
+					$tile.addClass("flagged");
+				}
+				
 				$row.append($tile);
 			}
 			
@@ -51,6 +56,14 @@
 		var tileCoords = $(event.target).attr("coords").split(",");
 		
 		this.board.gameBoard[tileCoords[0]][tileCoords[1]].reveal();
+		this.renderBoard();
+	}
+	
+	View.prototype.handleRightClick = function (event) {
+		event.preventDefault();
+		var tileCoords = $(event.target).attr("coords").split(",");
+		
+		this.board.gameBoard[tileCoords[0]][tileCoords[1]].flag();
 		this.renderBoard();
 	}
 	

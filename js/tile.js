@@ -7,6 +7,7 @@
 		this.mark = "|_|";
 		this.bombed = false;
 		this.revealed = false;
+		this.flagged = false;
 		this.board = board;
 		this.coords = coords;
 	}
@@ -48,24 +49,35 @@
 	}
 	
 	Tile.prototype.reveal = function () {
-		this.revealed = true;
+		if (!this.flagged) {
+			this.revealed = true;
 		
-		if (this.bombed) {
-			this.board.gameLoss();
-		} else {
-			if (this.board.checkForWin()) {
-				this.board.gameWin();
+			if (this.bombed) {
+				this.board.gameLoss();
+			} else {
+				if (this.board.checkForWin()) {
+					this.board.gameWin();
+				}
+			}
+		
+			if (this.neighborBombCount() === 0) {
+				this.neighbors().forEach( function (neighbor) {
+					if (neighbor.revealed === false) {
+						neighbor.reveal();
+					}
+				})
 			}
 		}
-		
-		if (this.neighborBombCount() === 0) {
-			this.neighbors().forEach( function (neighbor) {
-				if (neighbor.revealed === false) {
-					neighbor.reveal();
-				}
-			})
+	}
+	
+	Tile.prototype.flag = function () {
+		if (!this.revealed) {
+			if (this.flagged) {
+				this.flagged = false;
+			} else {
+				this.flagged = true;
+			}
 		}
-		
 	}
 	
 })();

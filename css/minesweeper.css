@@ -1,3 +1,7 @@
+#game-board {
+	float: left;
+}
+
 .row {
 	clear: both;
 }
@@ -21,15 +25,31 @@
 	background-color: gray;
 }
 
-#game-board {
-	float: left;
+.tile.hidden.flagged {
+	background-color: green;
 }
+
 
 #side-panel {
 	position: absolute;
 	top: 100px;
 	right: 200px;
-	height: 200px;
-	width: 300px;
+	height: 150px;
+	width: 250px;
 	border: dashed blue 1px;
+}
+
+#panel-header {
+	text-align: center;
+}
+
+#bomb-count {
+	text-align: center;
+	color: red;
+}
+
+#flag-button {
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
 }
