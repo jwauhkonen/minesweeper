@@ -9,6 +9,7 @@
 		this.$sidePanel = $("#side-panel");
 		this.boardSize = 20;
 		this.bombCount = 10;
+		this.bombsLeft = this.bombCount;
 		this.board = new Minesweeper.Board(this.boardSize, this.bombCount);
 		
 		this.renderBoard();
@@ -46,6 +47,8 @@
 			
 			this.$gameBoard.append($row);
 		}
+		
+		$("#bomb-count").html(this.bombCount);
 	}
 	
 	View.prototype.renderSidePanel = function () {
@@ -62,8 +65,18 @@
 	View.prototype.handleRightClick = function (event) {
 		event.preventDefault();
 		var tileCoords = $(event.target).attr("coords").split(",");
+		var tile = this.board.gameBoard[tileCoords[0]][tileCoords[1]];
 		
-		this.board.gameBoard[tileCoords[0]][tileCoords[1]].flag();
+		if (!tile.revealed) {
+			if (tile.flagged) {
+				tile.flagged = false;
+				this.bombCount += 1;
+			} else {
+				tile.flagged = true;
+				this.bombCount -= 1;
+			}
+		}
+		
 		this.renderBoard();
 	}
 	
