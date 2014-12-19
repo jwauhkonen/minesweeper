@@ -27,7 +27,11 @@
 				var $tile = $("<div class='tile hidden'></div>");
 				$tile.attr("coords", [i, j]);
 				
-				$tile.html(this.board.gameBoard[i][j].neighborBombCount());
+				if (this.board.gameBoard[i][j].neighborBombCount() === 0) {
+					$tile.empty();
+				} else {
+					$tile.html(this.board.gameBoard[i][j].neighborBombCount());
+				}
 				
 				if (this.board.gameBoard[i][j].bombed) {
 					$tile.empty();
