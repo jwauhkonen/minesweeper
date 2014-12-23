@@ -48,10 +48,12 @@
 				
 				$row.append($tile);
 			}
-			
 			this.$gameBoard.append($row);
 		}
 		
+		var boardWidth = (this.boardSize * 20)
+		$("#side-panel").css("width", boardWidth);
+		$("#game-board").css("width", boardWidth);
 		$("#bomb-count").html(this.bombCount);
 	}
 	
